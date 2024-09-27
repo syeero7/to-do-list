@@ -21,7 +21,6 @@ export default function deleteList(toDoListId) {
 }
 
 function renderDeleteListTitle(toDoListId) {
-  lists.getLists().find((list) => {
-    if (list.id == toDoListId) deleteListTitle.textContent = list.name;
-  });
+  const list = lists.getLists().find((list) => list.id == toDoListId);
+  deleteListTitle.textContent = list.name;
 }

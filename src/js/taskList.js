@@ -16,7 +16,7 @@ export function selectList(toDoListId, targetElement) {
 
   selectedList.dataset.selectedListId = toDoListId;
   resetSelectedList();
-  refreshToDoList()
+  refreshToDoList();
 }
 
 export function resetSelectedList() {
@@ -29,11 +29,8 @@ export function resetSelectedList() {
 
       addTaskButton.disabled = false;
 
-      lists.getLists().find((list) => {
-        if (list.id == toDoListId) {
-          selectedList.textContent = list.name;
-        }
-      });
+      const list = lists.getLists().find((list) => list.id == toDoListId);
+      selectedList.textContent = list.name;
     }
   });
 }

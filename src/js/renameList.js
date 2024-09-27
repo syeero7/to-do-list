@@ -12,9 +12,8 @@ export default (toDoListId) => {
 };
 
 function setRenameListInputValue(toDoListId) {
-  lists.getLists().find((list) => {
-    if (list.id == toDoListId) renameListInput.value = list.name;
-  });
+  const list = lists.getLists().find((list) => list.id == toDoListId);
+  renameListInput.value = list.name;
 }
 
 function updateListName(e) {
@@ -22,11 +21,10 @@ function updateListName(e) {
   const toDoListId = renameListDialog.dataset.renameListId;
   const userInput = renameListInput.value.trim();
   if (!userInput.length) return;
-  lists.getLists().find((list) => {
-    if (list.id == toDoListId) {
-      list.name = userInput;
-    }
-  });
+
+  const list = lists.getLists().find((list) => list.id == toDoListId);
+  list.name = userInput;
+
   refreshList();
   renameListDialog.close();
   renameListDialog.dataset.renameListId = "";
