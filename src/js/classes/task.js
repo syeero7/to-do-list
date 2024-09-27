@@ -20,7 +20,7 @@ export default class Task {
   }
 
   set id(newId) {
-    this.id = newId;
+    this.#id = newId;
   }
 
   get id() {
