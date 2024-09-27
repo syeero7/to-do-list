@@ -12,6 +12,7 @@ import {
 
 export function showEditTaskDialog(listId, taskId) {
   setTaskInputValues(listId, taskId);
+  addEventListenerToEditTaskForm()
   editTaskDialog.showModal();
 }
 
@@ -25,3 +26,15 @@ function setTaskInputValues(listId, taskId) {
   editTaskPriority.value = task.priority;
   editTaskNoteInput.value = task.note;
 }
+
+function addEventListenerToEditTaskForm() {
+  editTaskForm.addEventListener("submit", updateTaskDetails);
+
+  editTaskForm.addEventListener("click", (e) => {
+    if (e.target.matches(".cancelBtn")) {
+      editTaskDialog.close();
+    }
+  });
+}
+
+function updateTaskDetails(e){}
