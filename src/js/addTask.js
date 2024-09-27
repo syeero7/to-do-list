@@ -1,5 +1,7 @@
 import lists from "./classes/lists";
 import Task from "./classes/task";
+import { add, formatISO } from "date-fns";
+import { refreshToDoList } from "./taskList";
 import {
   addTaskForm,
   addTaskDialog,
@@ -11,7 +13,6 @@ import {
   generateNewId,
   selectedList,
 } from "./common";
-import { refreshToDoList } from "./taskList";
 
 export function showAddTaskDialog() {
   addTaskForm.addEventListener("submit", getUserInput);
@@ -22,6 +23,7 @@ export function showAddTaskDialog() {
     }
   });
 
+  resetInputValues();
   addTaskDialog.showModal();
 }
 
@@ -65,5 +67,25 @@ function addNewTask(id = null, title, description, dueDate, priority, note) {
   list.addTask(newTask);
 
   refreshToDoList();
+  resetInputValues();
   taskTitleInput.focus();
+}
+
+function SetDueDateInputAttributes() {
+  const now = new Date();
+  const today = now.toISOString().slice(0, 10);
+
+  taskDueDateInput.value = today;
+  taskDueDateInput.min = today;
+  taskDueDateInput.max = formatISO(add(now, { years: 10 }), {
+    representation: "date", // 10 years from now in ISO format
+  });
+}
+
+function resetInputValues() {
+  taskTitleInput.value = "";
+  taskDescInput.value = "";
+  taskPrioritySelect.selectedIndex = 0;
+  taskNoteInput.value = "";
+  SetDueDateInputAttributes();
 }
