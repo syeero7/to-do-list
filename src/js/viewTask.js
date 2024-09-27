@@ -13,6 +13,7 @@ import {
 
 export function showViewTaskDetailsDialog(listId, taskId) {
   setViewTaskTextContent(listId, taskId);
+  addEventListenerToViewTaskDialog()
   viewTaskDialog.showModal();
 }
 
@@ -44,4 +45,18 @@ function setViewTaskTextContent(listId, taskId) {
         }`;
 
   subtasks.dataset.taskId = task.id;
+}
+
+function addEventListenerToViewTaskDialog() {
+  viewTaskDialog.addEventListener("click", (e) => {
+    const target = e.target;
+
+    if (target.matches(".closeBtn")) {
+      viewTaskDialog.close();
+    }
+
+    if (target.matches(".subTaskBtn")) {
+      console.log("");
+    }
+  });
 }
