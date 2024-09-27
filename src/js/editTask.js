@@ -1,5 +1,6 @@
 import lists from "./classes/lists";
 import { refreshToDoList } from "./taskList";
+import { add, formatISO } from "date-fns";
 import {
   editTaskDialog,
   editTaskForm,
@@ -14,6 +15,7 @@ import {
 export function showEditTaskDialog(listId, taskId) {
   setTaskInputValues(listId, taskId);
   addEventListenerToEditTaskForm();
+  setEditTaskDueDateInputAttributes()
 
   editTaskDialog.dataset.taskId = taskId;
 
@@ -61,4 +63,13 @@ function updateTaskDetails(e) {
 
   refreshToDoList();
   editTaskDialog.close();
+}
+
+function setEditTaskDueDateInputAttributes() {
+  const now = new Date();
+
+  editTaskDueDateInput.min = now.toISOString().slice(0, 10);
+  editTaskDueDateInput.max = formatISO(add(now, { years: 10 }), {
+    representation: "date", // 10 years from today in ISO format
+  });
 }
