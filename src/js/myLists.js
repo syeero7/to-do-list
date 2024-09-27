@@ -1,19 +1,22 @@
-import lists from "../js/classes/lists";
-import ToDoList from "../js/classes/toDoList";
 import createListElements from "./createListEl";
+import deleteList from "./deleteList";
+import lists from "../js/classes/lists";
+import renameList from "./renameList";
+import ToDoList from "../js/classes/toDoList";
+import { selectList, resetSelectedList } from "./taskList";
 import {
+  generateNewId,
+  listNameInput,
+  myLists,
   removeElements,
   toDoListForm,
-  myLists,
-  listNameInput,
-  generateNewId,
 } from "./common";
 
-export default () => {
+export default function init() {
   toDoListForm.addEventListener("submit", getUserInput);
-
+  addEventListenerToList();
   refreshList();
-};
+}
 
 function renderLists() {
   lists.getLists().forEach((list) => createListElements(list));
@@ -23,9 +26,10 @@ function clearList() {
   removeElements(myLists);
 }
 
-function refreshList() {
-  renderLists();
+export function refreshList() {
   clearList();
+  renderLists();
+  resetSelectedList();
 }
 
 function getUserInput(e) {
@@ -46,5 +50,24 @@ function addToDoList(listId = null, listName) {
   lists.addList(toDoList);
 
   listNameInput.value = "";
-  refreshList()
+  refreshList();
+}
+
+function addEventListenerToList() {
+  myLists.addEventListener("click", (e) => {
+    const target = e.target;
+    const listId = target.parentElement.dataset.listId;
+
+    if (target.matches(".editBtn")) {
+      renameList(listId);
+    }
+
+    if (target.matches(".deleteBtn")) {
+      deleteList(listId);
+    }
+
+    if (target.matches(".listName")) {
+      selectList(listId, target);
+    }
+  });
 }
