@@ -1,5 +1,6 @@
 import lists from "./classes/lists";
 import { createTaskElements } from "./createTaskEl";
+import { showAddTaskDialog } from "./addTask";
 import {
   myLists,
   selectedList,
@@ -15,6 +16,7 @@ export function selectList(toDoListId, targetElement) {
   targetElement.classList.add("selected");
 
   selectedList.dataset.selectedListId = toDoListId;
+  addTaskButton.addEventListener("click", showAddTaskDialog);
   resetSelectedList();
   refreshToDoList();
 }
@@ -39,14 +41,14 @@ function renderTasks() {
   const toDoListId = selectedList.dataset.selectedListId;
 
   const list = lists.getLists().find((list) => list.id == toDoListId);
-  list.getToDoList().forEach((task) => createTaskElements(task));
+  list.getList().forEach((task) => createTaskElements(task));
 }
 
 function clearToDoList() {
   removeElements(toDoList);
 }
 
-function refreshToDoList() {
+export function refreshToDoList() {
   clearToDoList();
   renderTasks();
 }
