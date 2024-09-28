@@ -1,6 +1,7 @@
 import lists from "./classes/lists";
 import { refreshList } from "./myLists";
 import { deleteListDialog, deleteListTitle } from "./common";
+import { saveToLocalStorage } from "./storeData";
 
 export default function deleteList(toDoListId) {
   renderDeleteListTitle(toDoListId);
@@ -10,8 +11,10 @@ export default function deleteList(toDoListId) {
 
     if (target.matches(".yesBtn")) {
       lists.deleteList(toDoListId);
+
       deleteListDialog.close();
       refreshList();
+      saveToLocalStorage();
     }
 
     if (target.matches(".noBtn")) deleteListDialog.close();

@@ -1,6 +1,7 @@
 import lists from "./classes/lists";
 import { refreshList } from "./myLists";
 import { renameListDialog, renameListForm, renameListInput } from "./common";
+import { saveToLocalStorage } from "./storeData";
 
 export default (toDoListId) => {
   renameListForm.addEventListener("submit", updateListName);
@@ -27,6 +28,7 @@ function updateListName(e) {
 
   refreshList();
   renameListDialog.close();
+  saveToLocalStorage();
   renameListDialog.dataset.renameListId = "";
 }
 

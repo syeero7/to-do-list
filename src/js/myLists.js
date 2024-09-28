@@ -4,6 +4,7 @@ import lists from "../js/classes/lists";
 import renameList from "./renameList";
 import ToDoList from "../js/classes/toDoList";
 import { selectList, resetSelectedList } from "./taskList";
+import { saveToLocalStorage } from "./storeData";
 import {
   generateNewId,
   listNameInput,
@@ -39,7 +40,7 @@ function getUserInput(e) {
   addToDoList(null, listName);
 }
 
-function addToDoList(listId = null, listName) {
+export function addToDoList(listId = null, listName) {
   if (listId === null) {
     listId = generateNewId();
   }
@@ -51,6 +52,7 @@ function addToDoList(listId = null, listName) {
 
   listNameInput.value = "";
   refreshList();
+  saveToLocalStorage();
 }
 
 function addEventListenerToList() {

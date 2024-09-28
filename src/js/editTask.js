@@ -1,6 +1,7 @@
 import lists from "./classes/lists";
 import { refreshToDoList } from "./taskList";
 import { add, formatISO } from "date-fns";
+import { saveToLocalStorage } from "./storeData";
 import {
   editTaskDialog,
   editTaskForm,
@@ -15,7 +16,7 @@ import {
 export function showEditTaskDialog(listId, taskId) {
   setTaskInputValues(listId, taskId);
   addEventListenerToEditTaskForm();
-  setEditTaskDueDateInputAttributes()
+  setEditTaskDueDateInputAttributes();
 
   editTaskDialog.dataset.taskId = taskId;
 
@@ -25,6 +26,8 @@ export function showEditTaskDialog(listId, taskId) {
 function setTaskInputValues(listId, taskId) {
   const list = lists.getLists().find((list) => list.id == listId);
   const task = list.getList().find((task) => task.id == taskId);
+
+  if (task == null) return;
 
   editTaskTitleInput.value = task.title;
   editTaskDescInput.value = task.description;
@@ -63,6 +66,7 @@ function updateTaskDetails(e) {
 
   refreshToDoList();
   editTaskDialog.close();
+  saveToLocalStorage();
 }
 
 function setEditTaskDueDateInputAttributes() {

@@ -2,6 +2,7 @@ import lists from "./classes/lists";
 import Task from "./classes/task";
 import { add, formatISO } from "date-fns";
 import { refreshToDoList } from "./taskList";
+import { saveToLocalStorage } from "./storeData";
 import {
   addTaskForm,
   addTaskDialog,
@@ -48,7 +49,15 @@ function getUserInput(e) {
   );
 }
 
-function addNewTask(id = null, title, description, dueDate, priority, note) {
+export function addNewTask(
+  id = null,
+  title,
+  description,
+  dueDate,
+  priority,
+  note ,
+  status = false,
+) {
   if (id === null) {
     id = generateNewId();
   }
@@ -60,6 +69,7 @@ function addNewTask(id = null, title, description, dueDate, priority, note) {
   newTask.dueDate = dueDate;
   newTask.priority = priority;
   newTask.note = note;
+  newTask.status = status;
 
   const selectedListId = selectedList.dataset.selectedListId;
 
@@ -68,6 +78,7 @@ function addNewTask(id = null, title, description, dueDate, priority, note) {
 
   refreshToDoList();
   resetInputValues();
+  saveToLocalStorage();
   taskTitleInput.focus();
 }
 

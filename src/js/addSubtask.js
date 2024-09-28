@@ -1,5 +1,7 @@
 import lists from "./classes/lists";
 import Subtask from "./classes/subtask";
+import { refreshToDoList } from "./taskList";
+import { saveToLocalStorage } from "./storeData";
 import {
   subtaskDialog,
   addSubtaskForm,
@@ -33,7 +35,7 @@ function getUserInput(e) {
   addSubtask(null, subtaskName);
 }
 
-function addSubtask(subtaskId = null, subtaskName) {
+export function addSubtask(subtaskId = null, subtaskName) {
   if (subtaskId === null) {
     subtaskId = generateNewId();
   }
@@ -51,5 +53,7 @@ function addSubtask(subtaskId = null, subtaskName) {
   task.addSubtask(newSubtask);
 
   subtaskInput.value = "";
+  saveToLocalStorage();
   subtaskInput.focus();
+  refreshToDoList();
 }

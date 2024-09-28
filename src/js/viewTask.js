@@ -1,6 +1,7 @@
 import lists from "./classes/lists";
 import { intlFormatDistance, isEqual, isPast } from "date-fns";
 import { createSubtaskElements } from "./createSubtaskEl";
+import { saveToLocalStorage } from "./storeData";
 import {
   viewTaskDialog,
   viewTaskTitle,
@@ -24,6 +25,8 @@ export function showViewTaskDetailsDialog(listId, taskId) {
 function setViewTaskTextContent(listId, taskId) {
   const list = lists.getLists().find((list) => list.id == listId);
   const task = list.getList().find((task) => task.id == taskId);
+
+  if (task == null) return;
 
   viewTaskTitle.textContent = task.title;
   viewTaskDesc.textContent = task.description;
@@ -49,7 +52,7 @@ function setViewTaskTextContent(listId, taskId) {
         }`;
 
   subtasks.dataset.taskId = task.id;
-  refreshSubtaskList()
+  refreshSubtaskList();
 }
 
 function addEventListenerToViewTaskDialog() {
@@ -81,7 +84,9 @@ function deleteSubtask(subtaskId) {
   const list = lists.getLists().find((list) => list.id == listId);
   const task = list.getList().find((task) => task.id == taskId);
   task.deleteSubtask(subtaskId);
+
   refreshSubtaskList();
+  saveToLocalStorage();
 }
 
 function clearSubtasksList() {
