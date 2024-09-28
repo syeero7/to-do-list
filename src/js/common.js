@@ -37,7 +37,7 @@ export const viewTaskPriority = document.querySelector("[data-task-priority]");
 export const viewTaskNote = document.querySelector("[data-task-note]");
 export const viewTaskStatus = document.querySelector("[data-task-status]");
 
-export const myLists = document.querySelector("#lists");
+export const myLists = document.querySelector("#myLists");
 export const toDoList = document.querySelector("#toDoList");
 export const subtasks = document.querySelector("#subtasks");
 
