@@ -1,5 +1,6 @@
 import lists from "./classes/lists";
 import { intlFormatDistance, isEqual, isPast } from "date-fns";
+import { createSubtaskElements } from "./createSubtaskEl";
 import {
   viewTaskDialog,
   viewTaskTitle,
@@ -9,11 +10,14 @@ import {
   viewTaskNote,
   viewTaskStatus,
   subtasks,
+  selectedList,
+  removeElements,
 } from "./common";
 
 export function showViewTaskDetailsDialog(listId, taskId) {
   setViewTaskTextContent(listId, taskId);
-  addEventListenerToViewTaskDialog()
+  addEventListenerToViewTaskDialog();
+  addEventListenerToSubtasksList();
   viewTaskDialog.showModal();
 }
 
@@ -45,6 +49,7 @@ function setViewTaskTextContent(listId, taskId) {
         }`;
 
   subtasks.dataset.taskId = task.id;
+  refreshSubtaskList()
 }
 
 function addEventListenerToViewTaskDialog() {
@@ -59,4 +64,40 @@ function addEventListenerToViewTaskDialog() {
       console.log("");
     }
   });
+}
+
+function addEventListenerToSubtasksList() {
+  subtasks.addEventListener("change", (e) => {
+    if (e.target.matches("input[type=checkbox]")) {
+      deleteSubtask(e.target.id);
+    }
+  });
+}
+
+function deleteSubtask(subtaskId) {
+  const listId = selectedList.dataset.selectedListId;
+  const taskId = subtasks.dataset.taskId;
+
+  const list = lists.getLists().find((list) => list.id == listId);
+  const task = list.getList().find((task) => task.id == taskId);
+  task.deleteSubtask(subtaskId);
+  refreshSubtaskList();
+}
+
+function clearSubtasksList() {
+  removeElements(subtasks);
+}
+
+function renderSubtasks() {
+  const listId = selectedList.dataset.selectedListId;
+  const taskId = subtasks.dataset.taskId;
+
+  const list = lists.getLists().find((list) => list.id == listId);
+  const task = list.getList().find((task) => task.id == taskId);
+  task.getSubtasks().forEach((subtask) => createSubtaskElements(subtask));
+}
+
+function refreshSubtaskList() {
+  clearSubtasksList();
+  renderSubtasks();
 }
