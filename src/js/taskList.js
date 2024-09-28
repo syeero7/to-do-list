@@ -1,6 +1,11 @@
 import lists from "./classes/lists";
 import { createTaskElements } from "./createTaskEl";
 import { showAddTaskDialog } from "./addTask";
+import { updateTaskStatus } from "./taskStatus";
+import { deleteTask } from "./deleteTask";
+import { showEditTaskDialog } from "./editTask";
+import { showViewTaskDetailsDialog } from "./viewTask";
+import { showAddSubtasksDialog } from "./addSubtask";
 import {
   myLists,
   selectedList,
@@ -17,6 +22,7 @@ export function selectList(toDoListId, targetElement) {
 
   selectedList.dataset.selectedListId = toDoListId;
   addTaskButton.addEventListener("click", showAddTaskDialog);
+  addEventListenerToToDoList();
   resetSelectedList();
   refreshToDoList();
 }
@@ -51,4 +57,37 @@ function clearToDoList() {
 export function refreshToDoList() {
   clearToDoList();
   renderTasks();
+}
+
+function addEventListenerToToDoList() {
+  const listId = selectedList.dataset.selectedListId;
+
+  toDoList.addEventListener("change", (e) => {
+    if (e.target.matches("input[type=checkbox]")) {
+      updateTaskStatus(listId, e.target.id, e.target);
+    }
+  });
+
+  toDoList.addEventListener("click", (e) => {
+    const target = e.target;
+    const taskId = target.closest("li[data-task-id]").dataset.taskId;
+
+    const handleClick = {
+      ".moreBtn": () => console.log(target),
+      ".openBtn": () => showViewTaskDetailsDialog(listId, taskId),
+      ".addBtn": () => showAddSubtasksDialog(taskId),
+      ".editBtn": () => showEditTaskDialog(listId, taskId),
+      ".deleteBtn": () => deleteTask(listId, taskId),
+    };
+
+    const targetSelector = Object.keys(handleClick).some((selector) =>
+      target.matches(selector),
+    ); // checks if the target element has any css selectors that match the keys in the handleClick object
+
+    if (targetSelector) {
+      handleClick[
+        Object.keys(handleClick).find((selector) => target.matches(selector))
+      ](); // invokes the corresponding value ( function ) if a match is found
+    }
+  });
 }
