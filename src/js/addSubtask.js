@@ -4,6 +4,8 @@ import {
   subtaskDialog,
   addSubtaskForm,
   subtaskInput,
+  selectedList,
+  generateNewId,
 } from "./common";
 
 export function showAddSubtasksDialog(taskId) {
@@ -31,4 +33,23 @@ function getUserInput(e) {
   addSubtask(null, subtaskName);
 }
 
-function addSubtask(subtaskId = null, subtaskName) {}
+function addSubtask(subtaskId = null, subtaskName) {
+  if (subtaskId === null) {
+    subtaskId = generateNewId();
+  }
+
+  const listId = selectedList.dataset.selectedListId;
+  const taskId = subtaskDialog.dataset.taskId;
+
+  const list = lists.getLists().find((list) => list.id == listId);
+  const task = list.getList().find((task) => task.id == taskId);
+
+  const newSubtask = new Subtask();
+  newSubtask.id = subtaskId;
+  newSubtask.name = subtaskName;
+
+  task.addSubtask(newSubtask);
+
+  subtaskInput.value = "";
+  subtaskInput.focus();
+}
