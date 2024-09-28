@@ -10,8 +10,8 @@ import {
 } from "./common";
 
 export function createTaskElements(task) {
-  const listItem = document.createElement("li");
-  listItem.dataset.taskId = task.id;
+  const taskContainer = document.createElement("div");
+  taskContainer.dataset.taskId = task.id;
 
   const para = document.createElement("p");
   para.dataset.taskPriority = task.priority;
@@ -32,14 +32,14 @@ export function createTaskElements(task) {
   const dueDate = document.createElement("span");
   dueDate.classList.add("dueDate");
 
-        // task.dueDate === today
+  // task.dueDate === today
   dueDate.textContent = isEqual(
     new Date().toISOString().slice(0, 10),
     task.dueDate,
-)                          
+  )
     ? "today"
-    : intlFormatDistance(task.dueDate, new Date()); 
-     //distance between task.dueDate and today
+    : intlFormatDistance(task.dueDate, new Date());
+  //distance between task.dueDate and today
 
   const tagImg = document.createElement("img");
   tagImg.classList.add("tagImg");
@@ -62,8 +62,8 @@ export function createTaskElements(task) {
   para.append(label, dueDate, tagImg);
   moreBtn.appendChild(moreImg);
   dropdownDiv.append(moreBtn, moreButtons);
-  listItem.append(para, dropdownDiv);
-  toDoList.appendChild(listItem);
+  taskContainer.append(para, dropdownDiv);
+  toDoList.appendChild(taskContainer);
 }
 
 function createDropdownButtons() {

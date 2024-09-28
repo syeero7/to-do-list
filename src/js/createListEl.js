@@ -1,8 +1,8 @@
 import { myLists, editImage, deleteImage } from "./common";
 
 export default function createListElements(toDoList) {
-  const listItem = document.createElement("li");
-  listItem.dataset.listId = toDoList.id;
+  const listContainer = document.createElement("div");
+  listContainer.dataset.listId = toDoList.id;
 
   const para = document.createElement("p");
   para.textContent = toDoList.name;
@@ -16,7 +16,7 @@ export default function createListElements(toDoList) {
   editImg.alt = "edit";
 
   editBtn.appendChild(editImg);
-  listItem.append(para, editBtn);
+  listContainer.append(para, editBtn);
 
   const deleteBtn = document.createElement("button");
   deleteBtn.classList.add("deleteBtn");
@@ -26,7 +26,7 @@ export default function createListElements(toDoList) {
   deleteImg.alt = "delete";
 
   deleteBtn.appendChild(deleteImg);
-  listItem.appendChild(deleteBtn);
+  listContainer.appendChild(deleteBtn);
 
-  myLists.appendChild(listItem);
+  myLists.appendChild(listContainer);
 }

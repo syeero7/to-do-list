@@ -1,7 +1,7 @@
 import { subtasks } from "./common";
 
 export function createSubtaskElements(subtask) {
-  const listItem = document.createElement("li");
+  const subtaskContainer = document.createElement("div");
 
   const label = document.createElement("label");
   label.htmlFor = subtask.id;
@@ -14,6 +14,6 @@ export function createSubtaskElements(subtask) {
   span.textContent = subtask.name;
 
   label.append(input, span);
-  listItem.appendChild(label);
-  subtasks.appendChild(listItem);
+  subtaskContainer.appendChild(label);
+  subtasks.appendChild(subtaskContainer);
 }
