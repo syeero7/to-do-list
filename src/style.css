@@ -1,0 +1,198 @@
+@font-face {
+  font-family: "roboto";
+  src: url("./roboto-flex.woff2");
+  font-display: swap;
+}
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --font-size: clamp(1rem, 0.5rem + 1.8vh, 3rem);
+
+  --border: 3px solid;
+
+  --caribbean-current: #006466ff;
+  --midnight-green-2: #144552ff;
+  --palatinate: #4d194dff;
+  --whitesmoke: #f5f5f5;
+  --black: #161a1d;
+  --green: #16a34a;
+  --blue: #0284c7;
+  --red: #db2726;
+  --amber: #f59e0b;
+
+  --image-size: 2.5rem;
+  --bg-img: linear-gradient(
+    var(--midnight-green-2),
+    var(--caribbean-current),
+    var(--midnight-green-2)
+  );
+  --svg-color-white: invert(100%) sepia(100%) saturate(1%) hue-rotate(188deg)
+    brightness(111%) contrast(101%);
+
+  --svg-color-green: invert(39%) sepia(99%) saturate(1996%) hue-rotate(118deg)
+    brightness(94%) contrast(83%);
+
+  --svg-color-blue: invert(31%) sepia(68%) saturate(2178%) hue-rotate(179deg)
+    brightness(95%) contrast(98%);
+
+  --svg-color-amber: invert(72%) sepia(65%) saturate(2866%) hue-rotate(356deg)
+    brightness(98%) contrast(96%);
+
+  --svg-color-red: invert(34%) sepia(98%) saturate(4352%) hue-rotate(344deg)
+    brightness(85%) contrast(102%);
+}
+
+body {
+  background-image: var(--bg-img);
+  color: var(--whitesmoke);
+  height: 100vh;
+  width: clamp();
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--font-size);
+  line-height: 1.5;
+  font-weight: 400;
+  position: relative;
+}
+
+dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+input,
+button {
+  font: inherit;
+  border-radius: 5px;
+  outline: none;
+  border: var(--border);
+  border-color: transparent;
+}
+
+.offScreen {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+button > img {
+  float: left;
+  width: var(--image-size);
+  height: var(--image-size);
+  pointer-events: none;
+  filter: var(--svg-color-white);
+  transition: transform 0.25s;
+}
+
+button {
+  display: inline-block;
+  background: transparent;
+  cursor: pointer;
+}
+
+button:hover img {
+  transform: scale(1.2);
+}
+
+.toDoApp {
+  display: flex;
+  justify-content: space-between;
+  width: clamp(375px, 90%, 48em);
+}
+
+.myLists {
+  width: 40%;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.2rem;
+}
+
+.listContainer {
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  gap: 0.5rem;
+}
+.listContainer div[data-list-id] {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: var(--black);
+  gap: 0.2rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: var(--border);
+  border-color: transparent;
+}
+
+.listContainer .listName {
+  padding-right: 1.5rem;
+  width: 30ch;
+  cursor: pointer;
+}
+
+.listContainer div[data-list-id]:has(.listName:hover) {
+  border-color: var(--whitesmoke);
+}
+
+div[data-list-id]:has(.selected) {
+  font-weight: 600;
+  letter-spacing: 0.05ch;
+  border-color: var(--whitesmoke);
+}
+
+.toDoList {
+  width: 60%;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+}
+
+.addListContainer form {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.addListContainer input {
+  height: 2.5rem;
+  width: 32ch;
+}
+
+.addListContainer .addBtn {
+  background-color: var(--green);
+}
+
+.addListContainer .addBtn:hover {
+  background-color: var(--whitesmoke);
+  border: var(--border);
+  border-color: var(--green);
+}
+
+.addListContainer button:hover img {
+  filter: var(--svg-color-green);
+}
+
+.listContainer .deleteBtn:hover img {
+  filter: var(--svg-color-red);
+}
