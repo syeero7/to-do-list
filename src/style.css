@@ -14,6 +14,7 @@
 
 :root {
   --font-size: clamp(1rem, 0.5rem + 1.8vh, 3rem);
+  --ff-roboto: "roboto", sans-serif;
 
   --border: 3px solid;
 
@@ -70,6 +71,7 @@ body {
   font-weight: 400;
   position: relative;
   letter-spacing: 0.1rem;
+  font-family: var(--ff-roboto);
 }
 
 dialog {
