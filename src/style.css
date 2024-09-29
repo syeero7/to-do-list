@@ -26,6 +26,7 @@
   --blue: #0284c7;
   --red: #db2726;
   --amber: #f59e0b;
+  --slate: #475569;
 
   --image-size: 2.5rem;
   --bg-img: linear-gradient(
@@ -47,6 +48,12 @@
 
   --svg-color-red: invert(34%) sepia(98%) saturate(4352%) hue-rotate(344deg)
     brightness(85%) contrast(102%);
+
+  --svg-color-slate: invert(30%) sepia(14%) saturate(878%) hue-rotate(176deg)
+    brightness(96%) contrast(86%);
+
+  --svg-color-black: invert(5%) sepia(4%) saturate(3323%) hue-rotate(164deg)
+    brightness(93%) contrast(89%);
 }
 
 body {
@@ -106,14 +113,19 @@ button {
   cursor: pointer;
 }
 
-button:hover img {
+button:hover img,
+button:focus-within img {
   transform: scale(1.2);
+}
+
+button:focus-within {
+  border-color: var(--whitesmoke);
 }
 
 .toDoApp {
   display: flex;
-  justify-content: space-between;
-  width: clamp(375px, 90%, 48em);
+  gap: 5rem;
+  min-width: 1024px;
 }
 
 .myLists {
@@ -165,7 +177,9 @@ div[data-list-id]:has(.selected) {
   width: 60%;
   height: 80vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
 .addListContainer form {
@@ -193,6 +207,199 @@ div[data-list-id]:has(.selected) {
   filter: var(--svg-color-green);
 }
 
-.listContainer .deleteBtn:hover img {
+.listContainer .deleteBtn:hover img,
+.listContainer .deleteBtn:focus-within img {
   filter: var(--svg-color-red);
+}
+
+.addTaskContainer > .addBtn {
+  display: flex;
+  align-items: center;
+  background-color: var(--green);
+  color: var(--whitesmoke);
+  font: inherit;
+  padding: 0 0.5em;
+  margin: 2rem auto 1rem;
+  transition: 0.25s;
+  font-weight: 600;
+}
+
+.addTaskContainer > .addBtn:hover {
+  transform: scale(1.15);
+  color: var(--green);
+  background-color: var(--whitesmoke);
+  border-color: var(--green);
+}
+
+.addTaskContainer > .addBtn:hover img {
+  filter: var(--svg-color-green);
+}
+
+#toDoList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  overflow: auto;
+  height: 60vh;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.toDoList > h2 {
+  border-bottom: var(--border);
+  border-color: var(--black);
+}
+
+div[data-task-id] {
+  display: flex;
+  justify-content: space-between;
+  width: 40ch;
+  background-color: var(--whitesmoke);
+  color: var(--black);
+  padding-left: 1rem;
+  border-radius: 5px;
+}
+
+div[data-task-id] > p {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  position: relative;
+  border-bottom: var(--border);
+  margin-bottom: 1rem;
+  border-color: transparent;
+}
+
+div[data-task-id] > p > label {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+div[data-task-id] > p input {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+div[data-task-id] > p input:hover,
+div[data-task-id] > p input:focus-within {
+  outline: var(--blue) solid 3px;
+}
+
+div[data-task-id] > p .dueDate {
+  font-size: 1rem;
+  position: absolute;
+  right: 2rem;
+}
+
+div[data-task-id] > p.completed {
+  text-decoration: line-through 4px var(--black);
+}
+
+div > p[data-task-priority="normal"] {
+  border-color: var(--blue);
+}
+
+p[data-task-priority="normal"] .tagImg {
+  filter: var(--svg-color-blue);
+}
+
+div > p[data-task-priority="important"] {
+  border-color: var(--red);
+}
+
+p[data-task-priority="important"] .tagImg {
+  filter: var(--svg-color-red);
+}
+
+div > p[data-task-priority="low"] {
+  border-color: var(--slate);
+}
+
+p[data-task-priority="low"] .tagImg {
+  filter: var(--svg-color-slate);
+}
+
+.tagImg {
+  height: 1rem;
+  width: 1rem;
+}
+
+.moreBtn > img {
+  height: 2rem;
+  width: 2rem;
+  filter: var(--svg-color-black);
+}
+
+.moreBtn:focus-within {
+  border-color: var(--black);
+}
+
+.dropdownMore {
+  margin: auto 0;
+  display: inline-block;
+  position: relative;
+}
+
+.btnContainer {
+  display: none;
+  top: 2.375rem;
+  right: 0.75rem;
+  position: absolute;
+  background-color: var(--black);
+  min-width: 6rem;
+  box-shadow: 0 2px 3px 0 var(--slate);
+  z-index: 1;
+  border-radius: 5px;
+}
+
+.show {
+  display: grid;
+  gap: 0.4rem;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  padding: 0.4rem;
+}
+
+.btnContainer > button {
+  background-color: var(--whitesmoke);
+}
+
+.btnContainer > .deleteBtn > img {
+  filter: var(--svg-color-red);
+}
+
+.btnContainer > .addBtn > img {
+  filter: var(--svg-color-green);
+}
+
+.btnContainer > .openBtn > img {
+  filter: var(--svg-color-amber);
+}
+
+.btnContainer > .editBtn > img {
+  filter: var(--svg-color-blue);
+}
+
+.btnContainer > button:hover img {
+  filter: var(--svg-color-white);
+}
+
+.btnContainer > .deleteBtn:hover {
+  background-color: var(--red);
+}
+
+.btnContainer > .addBtn:hover {
+  background-color: var(--green);
+}
+
+.btnContainer > .openBtn:hover {
+  background-color: var(--amber);
+}
+
+.btnContainer > .editBtn:hover {
+  background-color: var(--blue);
 }
