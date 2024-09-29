@@ -7,217 +7,217 @@
   </head>
 
   <body>
+    <dialog id="renameListDlg">
+      <form id="renameListForm">
+        <p>
+          <label for="renameList" class="offScreen">
+            New To-Do List Name :
+          </label>
+
+          <input
+            type="text"
+            id="renameList"
+            maxlength="26"
+            autocomplete="off"
+            autofocus
+          >
+        </p>
+
+        <button type="button" class="cancelBtn">
+          <img src="./images/cancel.svg" alt="cancel" height="30" width="30">
+        </button>
+
+        <button type="submit" class="renameBtn">
+          <img src="./images/check.svg" alt="rename" height="30" width="30">
+        </button>
+      </form>
+    </dialog>
+
+    <dialog id="deleteListDlg">
+      <p class="deleteListTitle"></p>
+      <div class="warningContainer">
+        <p class="deleteWarning">
+          This will delete the list and all the items it contains. Are you sure
+          you want to delete this list?
+        </p>
+      </div>
+      <button type="button" class="noBtn" autofocus>
+        <img src="./images/cancel.svg" alt="no" height="30" width="30">
+      </button>
+
+      <button type="button" class="yesBtn">
+        <img src="./images/check.svg" alt="yes" height="30" width="30">
+      </button>
+    </dialog>
+
+    <dialog id="addTaskDlg">
+      <form id="addTaskForm">
+        <button type="button" class="closeBtn">
+          <img src="./images/close.svg" alt="close" height="30" width="30">
+        </button>
+
+        <p>
+          <label for="taskTitle" class="offScreen">Task Title :</label>
+          <input
+            type="text"
+            id="taskTitle"
+            maxlength="26"
+            autocomplete="off"
+            placeholder="Task Title..."
+            autofocus
+          >
+        </p>
+
+        <p>
+          <label for="taskDescription" class="offScreen">Description :</label>
+          <textarea
+            id="taskDescription"
+            autocomplete="off"
+            maxlength="250"
+            rows="4"
+            placeholder="Task Description..."
+            cols="45"
+          ></textarea>
+        </p>
+
+        <p>
+          <label for="taskDueDate">Due Date :</label>
+          <input type="date" id="taskDueDate">
+        </p>
+
+        <p>
+          <label for="taskPriority">Priority :</label>
+          <select id="taskPriority">
+            <option value="normal" selected>Normal</option>
+            <option value="important">Important</option>
+            <option value="low">Low</option>
+          </select>
+        </p>
+
+        <p>
+          <label for="taskNote" class="offScreen">Note</label>
+          <textarea
+            id="taskNote"
+            placeholder="Task Note..."
+            maxlength="550"
+            rows="4"
+            cols="45"
+            autocomplete="off"
+          ></textarea>
+        </p>
+
+        <button type="submit" class="addBtn">Add Task</button>
+      </form>
+    </dialog>
+
+    <dialog id="editTaskDlg">
+      <form id="editTaskForm">
+        <p>
+          <label for="editTaskTitle" class="offScreen">Task Title :</label>
+          <input
+            type="text"
+            id="editTaskTitle"
+            maxlength="26"
+            autocomplete="off"
+            autofocus
+          >
+        </p>
+
+        <p>
+          <label for="editTaskDescription" class="offScreen">
+            Description :
+          </label>
+          <textarea
+            id="editTaskDescription"
+            autocomplete="off"
+            maxlength="250"
+            rows="4"
+            cols="45"
+          ></textarea>
+        </p>
+
+        <p>
+          <label for="editTaskDueDate">Due Date :</label>
+          <input type="date" id="editTaskDueDate">
+        </p>
+
+        <p>
+          <label for="editTaskPriority">Priority :</label>
+          <select id="editTaskPriority">
+            <option value="normal">Normal</option>
+            <option value="important">Important</option>
+            <option value="low">Low</option>
+          </select>
+        </p>
+
+        <p>
+          <label for="editTaskNote" class="offScreen">Note</label>
+          <textarea
+            id="editTaskNote"
+            maxlength="550"
+            rows="4"
+            cols="45"
+            autocomplete="off"
+          ></textarea>
+        </p>
+        <button type="button" class="cancelBtn">
+          <img src="./images/cancel.svg" alt="cancel" height="30" width="30">
+        </button>
+
+        <button type="submit" class="yesBtn">
+          <img src="./images/check.svg" alt="edit" height="30" width="30">
+        </button>
+      </form>
+    </dialog>
+
+    <dialog id="viewTaskDlg">
+      <div class="viewTaskContainer">
+        <button type="button" class="closeBtn">
+          <img src="./images/close.svg" alt="close" height="30" width="30">
+        </button>
+
+        <p data-task-title></p>
+        <p data-task-status></p>
+        <p data-task-description></p>
+        <p data-task-due-date></p>
+        <p data-task-priority></p>
+        <p data-task-note></p>
+
+        <div class="subtasksContainer">
+          <p>Subtasks</p>
+          <ul id="subtasks" class="subtaskContent"></ul>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog id="subtaskDlg">
+      <form id="addSubtaskForm">
+        <button type="button" class="closeBtn">
+          <img src="./images/close.svg" alt="close" height="30" width="30">
+        </button>
+        <p>
+          <label for="addSubtask" class="offScreen">Subtask :</label>
+          <input
+            type="text"
+            id="addSubtask"
+            maxlength="26"
+            autocomplete="off"
+            autofocus
+            placeholder="Subtask..."
+          >
+        </p>
+
+        <button type="submit" class="addBtn">
+          <img src="./images/add.svg" alt="add" height="30" width="30">
+        </button>
+      </form>
+    </dialog>
+
     <main class="toDoApp">
-      <dialog id="renameListDlg">
-        <form id="renameListForm">
-          <p>
-            <label for="renameList" class="offScreen">
-              New To-Do List Name :
-            </label>
-
-            <input
-              type="text"
-              id="renameList"
-              maxlength="26"
-              autocomplete="off"
-              autofocus
-            >
-          </p>
-
-          <button type="button" class="cancelBtn">
-            <img src="./images/cancel.svg" alt="cancel" height="30" width="30">
-          </button>
-
-          <button type="submit" class="renameBtn">
-            <img src="./images/check.svg" alt="rename" height="30" width="30">
-          </button>
-        </form>
-      </dialog>
-
-      <dialog id="deleteListDlg">
-        <p class="deleteListTitle"></p>
-        <div class="warningContainer">
-          <p class="deleteWarning">
-            This will delete the list and all the items it contains. Are you
-            sure you want to delete this list?
-          </p>
-        </div>
-        <button type="button" class="noBtn" autofocus>
-          <img src="./images/cancel.svg" alt="no" height="30" width="30">
-        </button>
-
-        <button type="button" class="yesBtn">
-          <img src="./images/check.svg" alt="yes" height="30" width="30">
-        </button>
-      </dialog>
-
-      <dialog id="addTaskDlg">
-        <form id="addTaskForm">
-          <button type="button" class="closeBtn">
-            <img src="./images/close.svg" alt="close" height="30" width="30">
-          </button>
-
-          <p>
-            <label for="taskTitle" class="offScreen">Task Title :</label>
-            <input
-              type="text"
-              id="taskTitle"
-              maxlength="26"
-              autocomplete="off"
-              placeholder="Task Title..."
-              autofocus
-            >
-          </p>
-
-          <p>
-            <label for="taskDescription" class="offScreen">Description :</label>
-            <textarea
-              id="taskDescription"
-              autocomplete="off"
-              maxlength="250"
-              rows="4"
-              placeholder="Task Description..."
-              cols="45"
-            ></textarea>
-          </p>
-
-          <p>
-            <label for="taskDueDate">Due Date :</label>
-            <input type="date" id="taskDueDate">
-          </p>
-
-          <p>
-            <label for="taskPriority">Priority :</label>
-            <select id="taskPriority">
-              <option value="normal" selected>Normal</option>
-              <option value="important">Important</option>
-              <option value="low">Low</option>
-            </select>
-          </p>
-
-          <p>
-            <label for="taskNote" class="offScreen">Note</label>
-            <textarea
-              id="taskNote"
-              placeholder="Task Note..."
-              maxlength="550"
-              rows="4"
-              cols="45"
-              autocomplete="off"
-            ></textarea>
-          </p>
-
-          <button type="submit" class="addBtn">Add Task</button>
-        </form>
-      </dialog>
-
-      <dialog id="editTaskDlg">
-        <form id="editTaskForm">
-          <p>
-            <label for="editTaskTitle" class="offScreen">Task Title :</label>
-            <input
-              type="text"
-              id="editTaskTitle"
-              maxlength="26"
-              autocomplete="off"
-              autofocus
-            >
-          </p>
-
-          <p>
-            <label for="editTaskDescription" class="offScreen">
-              Description :
-            </label>
-            <textarea
-              id="editTaskDescription"
-              autocomplete="off"
-              maxlength="250"
-              rows="4"
-              cols="45"
-            ></textarea>
-          </p>
-
-          <p>
-            <label for="editTaskDueDate">Due Date :</label>
-            <input type="date" id="editTaskDueDate">
-          </p>
-
-          <p>
-            <label for="editTaskPriority">Priority :</label>
-            <select id="editTaskPriority">
-              <option value="normal">Normal</option>
-              <option value="important">Important</option>
-              <option value="low">Low</option>
-            </select>
-          </p>
-
-          <p>
-            <label for="editTaskNote" class="offScreen">Note</label>
-            <textarea
-              id="editTaskNote"
-              maxlength="550"
-              rows="4"
-              cols="45"
-              autocomplete="off"
-            ></textarea>
-          </p>
-          <button type="button" class="cancelBtn">
-            <img src="./images/cancel.svg" alt="cancel" height="30" width="30">
-          </button>
-
-          <button type="submit" class="yesBtn">
-            <img src="./images/check.svg" alt="edit" height="30" width="30">
-          </button>
-        </form>
-      </dialog>
-
-      <dialog id="viewTaskDlg">
-        <div class="viewTaskContainer">
-          <button type="button" class="closeBtn">
-            <img src="./images/close.svg" alt="close" height="30" width="30">
-          </button>
-
-          <p data-task-title></p>
-          <p data-task-status></p>
-          <p data-task-description></p>
-          <p data-task-due-date></p>
-          <p data-task-priority></p>
-          <p data-task-note></p>
-
-          <div class="dropdownChecklist">
-            <button type="button" class="subtasksBtn">Subtasks</button>
-            <div id="subtasks" class="subtaskContent"></div>
-          </div>
-        </div>
-      </dialog>
-
-      <dialog id="subtaskDlg">
-        <form id="addSubtaskForm">
-          <button type="button" class="closeBtn">
-            <img src="./images/close.svg" alt="close" height="30" width="30">
-          </button>
-          <p>
-            <label for="addSubtask" class="offScreen">Subtask :</label>
-            <input
-              type="text"
-              id="addSubtask"
-              maxlength="26"
-              autocomplete="off"
-              autofocus
-              placeholder="Subtask..."
-            >
-          </p>
-
-          <button type="submit" class="addBtn">
-            <img src="./images/add.svg" alt="add" height="30" width="30">
-          </button>
-        </form>
-      </dialog>
-
       <section class="myLists">
         <h1>My Lists</h1>
 
-        <div id="myLists"></div>
+        <div id="myLists" class="listContainer"></div>
 
         <div class="addListContainer">
           <form id="toDoListForm">
