@@ -30,6 +30,7 @@ export function selectList(toDoListId, targetElement) {
 export function resetSelectedList() {
   addTaskButton.disabled = true;
   selectedList.textContent = "Please select a list";
+  clearToDoList();
 
   myLists.querySelectorAll("p").forEach((para) => {
     if (para.classList.contains("selected")) {
@@ -70,24 +71,42 @@ function addEventListenerToToDoList() {
 
   toDoList.addEventListener("click", (e) => {
     const target = e.target;
-    const taskId = target.closest("li[data-task-id]").dataset.taskId;
 
-    const handleClick = {
-      ".moreBtn": () => console.log(target),
-      ".openBtn": () => showViewTaskDetailsDialog(listId, taskId),
-      ".addBtn": () => showAddSubtasksDialog(taskId),
-      ".editBtn": () => showEditTaskDialog(listId, taskId),
-      ".deleteBtn": () => deleteTask(listId, taskId),
-    };
+    const task = target.closest("div[data-task-id]");
 
-    const targetSelector = Object.keys(handleClick).some((selector) =>
-      target.matches(selector),
-    ); // checks if the target element has any css selectors that match the keys in the handleClick object
+    if (task == null) return;
 
-    if (targetSelector) {
-      handleClick[
-        Object.keys(handleClick).find((selector) => target.matches(selector))
-      ](); // invokes the corresponding value ( function ) if a match is found
+    const taskId = task.dataset.taskId;
+
+    if (target.matches(".moreBtn")) {
+      showButtons(target);
     }
+
+    if (target.matches(".openBtn")) {
+      showViewTaskDetailsDialog(listId, taskId);
+    }
+
+    if (target.matches(".addBtn")) {
+      showAddSubtasksDialog(taskId);
+    }
+
+    if (target.matches(".editBtn")) {
+      showEditTaskDialog(listId, taskId);
+    }
+
+    if (target.matches(".deleteBtn")) {
+      deleteTask(listId, taskId);
+    }
+  });
+}
+
+function showButtons(target) {
+  const sibling = target.nextElementSibling;
+
+  sibling.classList.toggle("show");
+  target.addEventListener("focusout", () => {
+    setTimeout(() => {
+      sibling.classList.remove("show");
+    }, 250); //0.25 seconds
   });
 }
