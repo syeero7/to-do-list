@@ -5,6 +5,8 @@ export function updateTaskStatus(listId, taskId, target) {
   const list = lists.getLists().find((list) => list.id == listId);
   const task = list.getList().find((task) => task.id == taskId);
 
+  if (task == null) return;
+
   task.status = target.checked;
 
   saveToLocalStorage();
