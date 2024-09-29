@@ -57,14 +57,8 @@ function setViewTaskTextContent(listId, taskId) {
 
 function addEventListenerToViewTaskDialog() {
   viewTaskDialog.addEventListener("click", (e) => {
-    const target = e.target;
-
-    if (target.matches(".closeBtn")) {
+    if (e.target.matches(".closeBtn")) {
       viewTaskDialog.close();
-    }
-
-    if (target.matches(".subTaskBtn")) {
-      console.log("");
     }
   });
 }
