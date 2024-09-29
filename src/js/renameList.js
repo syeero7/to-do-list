@@ -24,6 +24,8 @@ function updateListName(e) {
   if (!userInput.length) return;
 
   const list = lists.getLists().find((list) => list.id == toDoListId);
+  if (list == null) return;
+
   list.name = userInput;
 
   refreshList();
