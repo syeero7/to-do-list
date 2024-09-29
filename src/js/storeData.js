@@ -30,7 +30,7 @@ export function saveToLocalStorage() {
 export function loadDataFromLocalStorage() {
   const storedData = localStorage.getItem("t0D0_L1st");
 
-  if (typeof storedData !== "string") return;
+  if (!storedData.length) return;
 
   JSON.parse(storedData).forEach((list) => {
     addToDoList(list.id, list.name);
