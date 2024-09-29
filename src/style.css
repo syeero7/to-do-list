@@ -69,13 +69,18 @@ body {
   line-height: 1.5;
   font-weight: 400;
   position: relative;
+  letter-spacing: 0.1rem;
 }
 
 dialog {
   position: fixed;
   top: 50%;
   left: 50%;
+  color: var(--whitesmoke);
+  background-color: var(--black);
   transform: translate(-50%, -50%);
+  border: none;
+  border-radius: 8px;
 }
 
 input,
@@ -233,6 +238,11 @@ div[data-list-id]:has(.selected) {
 
 .addTaskContainer > .addBtn:hover img {
   filter: var(--svg-color-green);
+}
+
+.addTaskContainer > .addBtn[disabled] {
+  pointer-events: none;
+  background-color: var(--caribbean-current);
 }
 
 #toDoList {
@@ -402,4 +412,177 @@ p[data-task-priority="low"] .tagImg {
 
 .btnContainer > .editBtn:hover {
   background-color: var(--blue);
+}
+
+/*-- Dialogs ------------------------------------------ */
+
+#renameListDlg {
+  height: 140px;
+  width: 400px;
+}
+
+#renameListDlg input {
+  display: block;
+  margin: 1rem auto;
+}
+
+.renameBtn,
+.cancelBtn,
+.yesBtn,
+.noBtn,
+.closeBtn {
+  border-radius: 50%;
+}
+
+#renameListDlg .cancelBtn {
+  margin-left: 220px;
+}
+.renameBtn {
+  margin-left: 20px;
+}
+
+.renameBtn img,
+.yesBtn img {
+  filter: var(--svg-color-green);
+}
+
+.cancelBtn img,
+.noBtn img,
+.closeBtn img {
+  filter: var(--svg-color-red);
+}
+
+dialog button:hover img {
+  filter: var(--svg-color-white);
+}
+
+.renameBtn:hover,
+.yesBtn:hover {
+  background-color: var(--green);
+}
+
+.cancelBtn:hover,
+.noBtn:hover,
+.closeBtn:hover {
+  background-color: var(--red);
+}
+
+#deleteListDlg {
+  height: 250px;
+  width: 550px;
+}
+
+p.deleteListTitle {
+  width: 100%;
+  padding: 1rem 1rem;
+}
+
+p.deleteWarning {
+  padding: 0 1rem 2rem;
+}
+
+.noBtn {
+  margin-left: 350px;
+}
+
+.yesBtn {
+  margin-left: 1rem;
+}
+
+#addTaskDlg,
+#editTaskDlg,
+#viewTaskDlg {
+  padding: 1.5rem;
+  width: 420px;
+  height: 600px;
+}
+
+#addTaskDlg input:not([type="date"]),
+#editTaskDlg input:not([type="date"]),
+#addTaskDlg textarea,
+#editTaskDlg textarea {
+  width: 100%;
+}
+
+dialog input,
+dialog textarea,
+dialog select {
+  margin-bottom: 1rem;
+  font: inherit;
+}
+
+dialog textarea {
+  height: 100px;
+}
+
+dialog .addBtn {
+  background-color: var(--green);
+  padding: 0.5rem 2em;
+  font-weight: 700;
+  color: var(--whitesmoke);
+}
+
+dialog .addBtn:hover {
+  color: var(--green);
+  background-color: var(--whitesmoke);
+  border-color: var(--green);
+}
+
+#addTaskDlg .closeBtn {
+  margin-left: 340px;
+}
+
+#addTaskDlg .addBtn {
+  display: block;
+  margin: 0 auto;
+}
+
+#editTaskDlg {
+  height: 550px;
+}
+
+#editTaskDlg .cancelBtn {
+  margin-left: 230px;
+}
+
+#editTaskDlg button {
+  margin-top: 20px;
+}
+
+#subtaskDlg {
+  padding: 1rem;
+}
+
+#subtaskDlg .closeBtn {
+  margin-left: 250px;
+}
+
+#subtaskDlg .addBtn {
+  width: 100%;
+}
+
+#subtaskDlg .addBtn:hover img {
+  filter: var(--svg-color-green);
+}
+
+#viewTaskDlg .closeBtn {
+  border-color: transparent;
+  margin-left: 320px;
+}
+
+#viewTaskDlg p {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.subtasksContainer ul {
+  overflow: auto;
+}
+
+li {
+  list-style-type: none;
+}
+
+#subtasks label > span {
+  margin-left: 1rem;
 }
