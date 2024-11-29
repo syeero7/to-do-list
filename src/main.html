@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+  </head>
+  <body>
+    <dialog class="rename-project">
+      <form class="rename-project-form">
+        <div class="header">
+          <h3>Rename project</h3>
+        </div>
+        <article>
+          <label for="renameProject" class="visually-hidden">Project name</label>
+          <input type="text" id="renameProject" autocomplete="off" autofocus>
+        </article>
+        <div class="btn-container">
+          <button type="button" class="cancel-btn">Cancel</button>
+          <button type="submit" class="confrim-btn">Confirm</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog class="delete-Project">
+      <div class="container">
+        <article>
+          <h3 class="delete-project-title">Project title</h3>
+          <p>
+            This will delete the project and all the items it contains. Are you sure you want to
+            delete this project?
+          </p>
+        </article>
+        <div class="btn-container">
+          <button class="cancel-btn" type="button">Cancel</button>
+          <button class="confrim-btn" type="button">Confirm</button>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog class="add-task">
+      <form class="add-task-form">
+        <div class="header">
+          <h3>Add task</h3>
+          <button aria-label="close" class="close-btn btn-bg" type="button"></button>
+        </div>
+
+        <article>
+          <p>
+            <label for="addTitle" class="visually-hidden">Task title</label>
+            <input type="text" id="addTitle" autocomplete="off" placeholder="Task title" autofocus>
+          </p>
+
+          <p>
+            <label for="addDescription" class="visually-hidden">Description</label>
+            <textarea
+              id="addDescription"
+              autocomplete="off"
+              rows="4"
+              placeholder="Task description"
+              cols="45"
+            ></textarea>
+          </p>
+
+          <p class="add-due-date">
+            <label for="addDueDate">Due date</label>
+            <input type="date" id="addDueDate">
+          </p>
+
+          <p class="add-priority">
+            <label for="addPriority">Priority</label>
+            <select id="addPriority">
+              <option value="normal" selected>Normal</option>
+              <option value="important">Important</option>
+              <option value="low">Low</option>
+            </select>
+          </p>
+        </article>
+        <div class="btn-container">
+          <button type="submit" class="add-task-btn">Add task</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog class="edit-task">
+      <form class="edit-task-form">
+        <div class="header">
+          <h3>Edit task</h3>
+        </div>
+
+        <article>
+          <p>
+            <label for="editTitle" class="visually-hidden">Task title</label>
+            <input type="text" id="editTitle" autocomplete="off" autofocus>
+          </p>
+
+          <p>
+            <label for="editDescription" class="visually-hidden">Description</label>
+            <textarea id="editDescription" autocomplete="off" rows="4" cols="45"></textarea>
+          </p>
+
+          <p class="edit-due-date">
+            <label for="editDueDate">Due date </label>
+            <input type="date" id="editDueDate">
+          </p>
+
+          <p class="edit-priority">
+            <label for="editPriority">Priority </label>
+            <select id="editPriority">
+              <option value="normal">Normal</option>
+              <option value="important">Important</option>
+              <option value="low">Low</option>
+            </select>
+          </p>
+        </article>
+        <div class="btn-container">
+          <button type="button" class="cancel-btn">Cancel</button>
+          <button type="submit" class="confrim-btn">Confirm</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog class="view-task">
+      <div class="container">
+        <div class="header">
+          <button aria-label="close" type="button" class="close-btn btn-bg"></button>
+        </div>
+
+        <article>
+          <p data-task-title></p>
+          <p data-task-status></p>
+          <p data-task-description></p>
+          <p data-task-due-date></p>
+          <p data-task-priority></p>
+        </article>
+      </div>
+    </dialog>
+
+    <header class="main-header">
+      <h1>To-Do List</h1>
+      <button aria-label="view projects" data-projects="open" type="button" class="btn-bg"></button>
+    </header>
+
+    <main class="main-content">
+      <section class="projects" data-active="false">
+        <header>
+          <h2>Projects</h2>
+        </header>
+        <form class="add-project-form">
+          <p>
+            <label for="addProject" class="visually-hidden">Project name</label>
+            <input id="addProject" type="text" autocomplete="off" placeholder="Project name">
+          </p>
+          <button aria-label="add project" type="submit" class="add-project-btn btn-bg"></button>
+        </form>
+        <menu class="project-list"></menu>
+      </section>
+
+      <section class="todo-list" data-active="true">
+        <header>
+          <h2 class="selected-project">Please select a project</h2>
+          <div class="btn-container">
+            <button type="button" class="add-task-btn">Add task</button>
+          </div>
+        </header>
+        <menu class="task-list"></menu>
+      </section>
+    </main>
+  </body>
+</html>
