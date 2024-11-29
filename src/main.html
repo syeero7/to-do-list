@@ -17,12 +17,12 @@
         </article>
         <div class="btn-container">
           <button type="button" class="cancel-btn">Cancel</button>
-          <button type="submit" class="confrim-btn">Confirm</button>
+          <button type="submit" class="confirm-btn">Confirm</button>
         </div>
       </form>
     </dialog>
 
-    <dialog class="delete-Project">
+    <dialog class="delete-project">
       <div class="container">
         <article>
           <h3 class="delete-project-title">Project title</h3>
@@ -33,7 +33,7 @@
         </article>
         <div class="btn-container">
           <button class="cancel-btn" type="button">Cancel</button>
-          <button class="confrim-btn" type="button">Confirm</button>
+          <button class="confirm-btn" type="button">Confirm</button>
         </div>
       </div>
     </dialog>
@@ -45,7 +45,7 @@
           <button aria-label="close" class="close-btn btn-bg" type="button"></button>
         </div>
 
-        <article>
+        <article class="form-body">
           <p>
             <label for="addTitle" class="visually-hidden">Task title</label>
             <input type="text" id="addTitle" autocomplete="off" placeholder="Task title" autofocus>
@@ -88,7 +88,7 @@
           <h3>Edit task</h3>
         </div>
 
-        <article>
+        <article class="form-body">
           <p>
             <label for="editTitle" class="visually-hidden">Task title</label>
             <input type="text" id="editTitle" autocomplete="off" autofocus>
@@ -115,7 +115,7 @@
         </article>
         <div class="btn-container">
           <button type="button" class="cancel-btn">Cancel</button>
-          <button type="submit" class="confrim-btn">Confirm</button>
+          <button type="submit" class="confirm-btn">Confirm</button>
         </div>
       </form>
     </dialog>
@@ -129,9 +129,9 @@
         <article>
           <p data-task-title></p>
           <p data-task-status></p>
+          <p data-task-priority></p>
           <p data-task-description></p>
           <p data-task-due-date></p>
-          <p data-task-priority></p>
         </article>
       </div>
     </dialog>
