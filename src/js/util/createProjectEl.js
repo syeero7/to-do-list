@@ -1,17 +1,23 @@
-export function createProjectElements(project, projectList) {
-  const listItem = document.createElement("li");
-  listItem.dataset.projectId = project.id;
+export function createProjectElements(projectList) {
+  const fragment = document.createDocumentFragment();
 
-  const link = document.createElement("a");
-  link.textContent = project.name;
-  link.href = "#";
+  projectList.forEach((project) => {
+    const listItem = document.createElement("li");
+    listItem.dataset.projectId = project.id;
 
-  const editBtn = document.createElement("button");
-  editBtn.classList.add("edit-btn", "btn-bg");
+    const link = document.createElement("a");
+    link.textContent = project.name;
+    link.href = "#";
 
-  const deleteBtn = document.createElement("button");
-  deleteBtn.classList.add("delete-btn", "btn-bg");
+    const editBtn = document.createElement("button");
+    editBtn.classList.add("edit-btn", "btn-bg");
 
-  listItem.append(link, editBtn, deleteBtn);
-  projectList.appendChild(listItem);
+    const deleteBtn = document.createElement("button");
+    deleteBtn.classList.add("delete-btn", "btn-bg");
+
+    listItem.append(link, editBtn, deleteBtn);
+    fragment.appendChild(listItem);
+  });
+
+  return fragment;
 }
