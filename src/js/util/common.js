@@ -1,4 +1,4 @@
-export const variables = { selectedProjectId: null, renameProjectId: null, editTaskId: null };
+export const variables = { selectedProjectId: null, activeProjectId: null, activeTaskId: null };
 
 // selectors --------------------
 
@@ -14,7 +14,7 @@ export const projectNameInput = document.querySelector("#addProject");
 export const renameProjectForm = document.querySelector(".rename-project-form");
 export const renameProjectInput = document.querySelector("#renameProject");
 
-export const deleteProjectTitle = document.querySelector(".delete-project-title");
+export const deleteProjectHeader = document.querySelector(".delete-project-title");
 
 export const addTaskForm = document.querySelector(".add-task-form");
 export const addTitleInput = document.querySelector("#addTitle");

@@ -1,3 +1,4 @@
+import { openDeleteProjectDialog } from "../actions/deleteProject.js";
 import { openRenameProjectDialog } from "../actions/renameProject.js";
 import { selectProject } from "../actions/selectProject.js";
 import projectList from "../classes/ProjectList.js";
@@ -21,7 +22,7 @@ export function handleProjectListClicks() {
     const projectId = target.parentElement.dataset.projectId;
 
     if (target.matches(".edit-btn")) openRenameProjectDialog(projectId);
-    // if(target.matches(".delete-btn"))
+    if (target.matches(".delete-btn")) openDeleteProjectDialog(projectId);
     if (target.tagName === "A") {
       e.preventDefault();
       selectProject(projectId, target);

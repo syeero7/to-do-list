@@ -13,7 +13,7 @@ export function initRenameProjectForm() {
 }
 
 export function openRenameProjectDialog(projectId) {
-  variables.renameProjectId = projectId;
+  variables.activeProjectId = projectId;
   setRenameProjectInputValue(projectId);
   renameProjectDialog.showModal();
 }
@@ -31,17 +31,17 @@ function getProjectName(e) {
 }
 
 function updateProjectName(input) {
-  const project = projectList.list.find((project) => project.id === variables.renameProjectId);
+  const project = projectList.list.find((project) => project.id === variables.activeProjectId);
   project.name = input;
 
   refreshProjectList();
   renameProjectDialog.close();
-  variables.renameProjectId = null;
+  variables.activeProjectId = null;
 }
 
 function clickHandler(e) {
   if (!e.target.matches(".cancel-btn")) return;
 
   renameProjectDialog.close();
-  variables.renameProjectId = null;
+  variables.activeProjectId = null;
 }
