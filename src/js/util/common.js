@@ -1,4 +1,4 @@
-export const selected = { projectId: null };
+export const variables = { selectedProjectId: null, renameProjectId: null, editTaskId: null };
 
 // selectors --------------------
 

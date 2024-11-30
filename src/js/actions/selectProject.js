@@ -1,4 +1,4 @@
-import { projectListElement, selected } from "../util/common.js";
+import { projectListElement, variables } from "../util/common.js";
 
 export function selectProject(projectId, targetElement) {
   projectListElement.querySelectorAll("li").forEach((listItem) => {
@@ -6,5 +6,5 @@ export function selectProject(projectId, targetElement) {
   });
   targetElement.classList.add("selected");
 
-  selected.projectId = projectId;
+  variables.selectedProjectId = projectId;
 }

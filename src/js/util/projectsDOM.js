@@ -1,3 +1,4 @@
+import { openRenameProjectDialog } from "../actions/renameProject.js";
 import { selectProject } from "../actions/selectProject.js";
 import projectList from "../classes/ProjectList.js";
 import { projectListElement, removeElements } from "./common.js";
@@ -19,8 +20,11 @@ export function handleProjectListClicks() {
     if (target.tagName !== "A" && target.tagName !== "BUTTON") return;
     const projectId = target.parentElement.dataset.projectId;
 
-    if (target.tagName === "A") selectProject(projectId, target);
-    //if(target.matches(".edit-btn"))
+    if (target.matches(".edit-btn")) openRenameProjectDialog(projectId);
     // if(target.matches(".delete-btn"))
+    if (target.tagName === "A") {
+      e.preventDefault();
+      selectProject(projectId, target);
+    }
   });
 }
