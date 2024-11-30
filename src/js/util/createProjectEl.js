@@ -4,6 +4,7 @@ export function createProjectElements(project, projectList) {
 
   const link = document.createElement("a");
   link.textContent = project.name;
+  link.href = "#";
 
   const editBtn = document.createElement("button");
   editBtn.classList.add("edit-btn", "btn-bg");
