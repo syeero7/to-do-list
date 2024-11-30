@@ -200,3 +200,180 @@ h1 {
     cursor: pointer;
   }
 }
+
+/* dialogs ------------------------ */
+
+dialog {
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  transition: opacity 0.5s;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  background-color: var(--black);
+  padding: 0.5rem;
+  min-width: 300px;
+  border-radius: 8px;
+}
+dialog[open] {
+  opacity: 1;
+}
+dialog::backdrop {
+  filter: blur(3px);
+}
+.header {
+  background-color: var(--dark-gray);
+  padding: 1rem;
+  border-radius: 6px;
+  color: var(--white);
+}
+dialog .btn-container {
+  padding: 1rem;
+  border-radius: 6px;
+  background-color: var(--dark-gray);
+  display: flex;
+  justify-content: end;
+  gap: 1rem;
+}
+.confirm-btn,
+.cancel-btn {
+  padding: 0.5em 1em;
+  border-radius: 8px;
+  border: 2px solid var(--white);
+  color: var(--white);
+  font-weight: 700;
+}
+.confirm-btn {
+  background-color: var(--blue);
+}
+.cancel-btn {
+  background-color: var(--red);
+}
+.close-btn {
+  background-image: url("./assets/images/close.svg");
+  border-radius: 50%;
+  background-color: var(--red);
+}
+
+/* rename project dialog */
+
+.rename-project-form {
+  display: grid;
+  gap: 0.5rem;
+}
+
+/* delete project dialog */
+
+.delete-project .container {
+  display: grid;
+  gap: 0.5rem;
+}
+.delete-project article {
+  display: grid;
+  gap: 1rem;
+  background-color: var(--dark-gray);
+  color: var(--white);
+  border-radius: 6px;
+  padding: 1rem;
+  max-width: 50ch;
+}
+
+/* add / edit task form body */
+
+.form-body {
+  display: grid;
+  color: var(--white);
+  row-gap: 0.5rem;
+}
+.form-body p:nth-child(1) {
+  grid-area: 1/1/1/3;
+}
+.form-body p:nth-child(2) {
+  grid-area: 2/1/3/3;
+  max-height: 5em;
+  max-width: 34ch;
+}
+.form-body label {
+  font-weight: 600;
+}
+.form-body textarea {
+  max-width: 100%;
+  max-height: 100%;
+  padding: 0.5rem;
+  border-radius: 8px;
+}
+.edit-due-date input,
+.add-due-date input {
+  min-width: auto;
+  min-height: auto;
+}
+.add-due-date,
+.add-priority,
+.edit-due-date,
+.edit-priority {
+  display: grid;
+  justify-items: center;
+  background-color: var(--dark-gray);
+  padding: 0.5rem;
+  gap: 0.5rem;
+}
+.add-priority select,
+.edit-priority select,
+.add-due-date input,
+.edit-due-date input {
+  font: inherit;
+  border-radius: 8px;
+  padding: 0.2em 0.5em;
+}
+
+/* add task dialog */
+
+.add-task-form {
+  display: grid;
+  gap: 0.5rem;
+}
+.add-task-form .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.add-task-form .btn-container {
+  padding: 1rem;
+  background-color: var(--dark-gray);
+  border-radius: 6px;
+  justify-content: center;
+}
+.add-task-form .add-task-btn {
+  background-color: var(--green);
+  padding: 0.8em 2em;
+  color: var(--white);
+  border-radius: 8px;
+  border: 2px solid var(--white);
+}
+
+/* edit task dialog */
+
+.edit-task-form {
+  display: grid;
+  gap: 0.5rem;
+}
+
+/* view task dialog */
+
+.view-task > .container {
+  display: grid;
+  gap: 0.5rem;
+}
+.view-task .header {
+  display: flex;
+  justify-content: end;
+}
+.view-task article {
+  display: grid;
+  gap: 1rem;
+  background-color: var(--dark-gray);
+  color: var(--white);
+  padding: 1rem;
+  max-width: 32ch;
+  border-radius: 6px;
+}
