@@ -6,10 +6,10 @@ export function createProjectElements(project, projectList) {
   link.textContent = project.name;
 
   const editBtn = document.createElement("button");
-  editBtn.classList.add("edit-btn");
+  editBtn.classList.add("edit-btn", "btn-bg");
 
   const deleteBtn = document.createElement("button");
-  deleteBtn.classList.add("delete-btn");
+  deleteBtn.classList.add("delete-btn", "btn-bg");
 
   listItem.append(link, editBtn, deleteBtn);
   projectList.appendChild(listItem);
