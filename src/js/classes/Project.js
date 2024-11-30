@@ -1,4 +1,4 @@
-export class Project {
+export default class Project {
   #id;
   #name;
   #list;
