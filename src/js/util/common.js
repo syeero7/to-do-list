@@ -1,3 +1,5 @@
+export const selected = { projectId: null };
+
 // selectors --------------------
 
 export const renameProjectDialog = document.querySelector(".rename-project");
