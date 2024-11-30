@@ -14,7 +14,7 @@
 
 :root {
   --ff-open-sans: "open-sans", Arial, sans-serif;
-  --fs: clamp(1rem, 1rem + 2vw, 3rem);
+  --fs: clamp(1rem, 1rem + 0.5vw, 3rem);
 
   --black: #121212;
   --dark-gray: #282828;
@@ -25,6 +25,7 @@
   --amber: #fbbf24;
 
   --btn-size: 3rem;
+  --border: 2px solid var(--white);
 }
 
 .visually-hidden {
@@ -43,8 +44,12 @@ section[data-active="false"] {
 
 body {
   font-family: var(--ff-open-sans);
+  font-size: var(--fs);
   background-color: var(--black);
   position: relative;
+}
+a:any-link {
+  text-decoration: none;
 }
 button,
 textarea,
@@ -56,7 +61,7 @@ input {
 input {
   min-height: 3rem;
   border-radius: 8px;
-  border: 2px solid var(--white);
+  border: var(--border);
   padding: 0.5rem;
   min-width: 100%;
 }
@@ -69,7 +74,7 @@ button:active {
   min-height: var(--btn-size);
   background-size: cover;
   background-color: transparent;
-  border: 2px solid var(--white);
+  border: var(--border);
   border-radius: 8px;
 }
 .main-header {
@@ -89,7 +94,7 @@ h1 {
 }
 .main-content {
   padding: 0.5rem;
-  transform: translateY(5rem);
+  transform: translateY(calc(1rem + 3.5em));
   min-height: calc(100vh - 5rem);
   display: flex;
   flex-direction: column;
@@ -103,6 +108,18 @@ h1 {
 [data-projects]:active {
   opacity: 0.1;
   transition: opacity 0.05s ease-in-out;
+}
+.edit-btn {
+  background-image: url("./assets/images/edit.svg");
+}
+.delete-btn {
+  background-image: url("./assets/images/delete.svg");
+}
+.edit-btn:active {
+  background-image: url("./assets/images/edit-hover.svg");
+}
+.delete-btn:active {
+  background-image: url("./assets/images/delete-hover.svg");
 }
 
 /* Projects ----------------------------- */
@@ -140,6 +157,32 @@ h1 {
   display: flex;
   flex-direction: column;
   flex: 1;
+  gap: 0.5rem;
+}
+.project-list li {
+  background-color: var(--dark-gray);
+  padding: 1rem 0.5rem;
+  gap: 1rem;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  border-radius: 6px;
+}
+.project-list li > a {
+  flex: 1;
+  color: var(--white);
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 0.4rem 0.5rem;
+  border: 2px solid transparent;
+  border-radius: 8px;
+}
+.project-list li button {
+  border-color: transparent;
+}
+.project-list li a:active {
+  transform: scale(0.8);
+  transition: transform 0.5s;
 }
 
 /* To-do list --------------------------- */
@@ -169,7 +212,7 @@ h1 {
 .todo-list .add-task-btn {
   padding: 0.6em 2em;
   border-radius: 8px;
-  border: 2px solid var(--white);
+  border: var(--border);
   background-color: var(--green);
   color: var(--white);
   font-weight: 700;
@@ -190,6 +233,9 @@ h1 {
     gap: 1rem;
     padding: 0.5rem 1rem;
   }
+  .project-list li {
+    max-width: calc(50vw - 1.5rem);
+  }
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -198,6 +244,21 @@ h1 {
     transform: scale(1.1);
     transition: transform 0.35s;
     cursor: pointer;
+  }
+  button:active {
+    transform: scale(0.5);
+    transition: transform 0.4s;
+  }
+  .project-list a:hover {
+    border-color: var(--white);
+  }
+  .project-list .edit-btn:focus-visible,
+  .project-list .edit-btn:hover {
+    background-image: url("./assets/images/edit-hover.svg");
+  }
+  .project-list .delete-btn:focus-visible,
+  .project-list .delete-btn:hover {
+    background-image: url("./assets/images/delete-hover.svg");
   }
 }
 
@@ -239,7 +300,7 @@ dialog .btn-container {
 .cancel-btn {
   padding: 0.5em 1em;
   border-radius: 8px;
-  border: 2px solid var(--white);
+  border: var(--border);
   color: var(--white);
   font-weight: 700;
 }
@@ -348,7 +409,7 @@ dialog .btn-container {
   padding: 0.8em 2em;
   color: var(--white);
   border-radius: 8px;
-  border: 2px solid var(--white);
+  border: var(--border);
 }
 
 /* edit task dialog */
