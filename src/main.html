@@ -13,7 +13,7 @@
         </div>
         <article>
           <label for="renameProject" class="visually-hidden">Project name</label>
-          <input type="text" id="renameProject" autocomplete="off" autofocus>
+          <input type="text" maxlength="30" id="renameProject" autocomplete="off" autofocus>
         </article>
         <div class="btn-container">
           <button type="button" class="cancel-btn">Cancel</button>
@@ -48,7 +48,14 @@
         <article class="form-body">
           <p>
             <label for="addTitle" class="visually-hidden">Task title</label>
-            <input type="text" id="addTitle" autocomplete="off" placeholder="Task title" autofocus>
+            <input
+              type="text"
+              maxlength="30"
+              id="addTitle"
+              autocomplete="off"
+              placeholder="Task title"
+              autofocus
+            >
           </p>
 
           <p>
@@ -59,6 +66,7 @@
               rows="4"
               placeholder="Task description"
               cols="45"
+              maxlength="300"
             ></textarea>
           </p>
 
@@ -91,12 +99,18 @@
         <article class="form-body">
           <p>
             <label for="editTitle" class="visually-hidden">Task title</label>
-            <input type="text" id="editTitle" autocomplete="off" autofocus>
+            <input type="text" maxlength="30" id="editTitle" autocomplete="off" autofocus>
           </p>
 
           <p>
             <label for="editDescription" class="visually-hidden">Description</label>
-            <textarea id="editDescription" autocomplete="off" rows="4" cols="45"></textarea>
+            <textarea
+              id="editDescription"
+              maxlength="300"
+              autocomplete="off"
+              rows="4"
+              cols="45"
+            ></textarea>
           </p>
 
           <p class="edit-due-date">
@@ -149,7 +163,13 @@
         <form class="add-project-form">
           <p>
             <label for="addProject" class="visually-hidden">Project name</label>
-            <input id="addProject" type="text" autocomplete="off" placeholder="Project name">
+            <input
+              id="addProject"
+              maxlength="30"
+              type="text"
+              autocomplete="off"
+              placeholder="Project name"
+            >
           </p>
           <button aria-label="add project" type="submit" class="add-project-btn btn-bg"></button>
         </form>
