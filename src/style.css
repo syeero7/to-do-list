@@ -65,9 +65,20 @@ input {
   padding: 0.5rem;
   min-width: 100%;
 }
+li {
+  list-style: none;
+}
 button:active {
   transform: scale(1.2);
   transition: transform 0.05s;
+}
+button.add-task-btn:disabled {
+  all: unset;
+  border: var(--border);
+  padding: 0.6em 2em;
+  border-radius: 8px;
+  background-color: var(--green);
+  opacity: 0.5;
 }
 .btn-bg {
   min-width: var(--btn-size);
@@ -184,6 +195,10 @@ h1 {
   transform: scale(0.8);
   transition: transform 0.5s;
 }
+li.selected {
+  box-shadow: inset -8px 0 0 0 var(--white);
+  border-radius: 6px 0 0 6px;
+}
 
 /* To-do list --------------------------- */
 
@@ -204,6 +219,7 @@ h1 {
 }
 .todo-list h2 {
   text-align: center;
+  overflow-x: auto;
 }
 .todo-list .btn-container {
   display: flex;
@@ -219,6 +235,81 @@ h1 {
 }
 .task-list {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.task-list li {
+  background-color: var(--dark-gray);
+  border-radius: 6px;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.5rem;
+  color: var(--white);
+}
+.task-list input {
+  min-height: 3rem;
+  min-width: 3rem;
+  margin-right: 1rem;
+}
+.task-list label {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  overflow-x: auto;
+}
+.btn-bg.more-btn {
+  background-image: url("./assets/images/more.svg");
+  border: var(--border);
+  transform: none;
+}
+.dropdown-container {
+  position: relative;
+  max-height: 3rem;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translateY(100%);
+  background-color: var(--dark-gray);
+  padding: 0.5rem;
+  border-radius: 6px;
+  z-index: 1;
+}
+.dropdown-content button {
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: var(--border);
+}
+.drop-view-btn {
+  background-color: var(--green);
+}
+.drop-edit-btn {
+  background-color: var(--blue);
+}
+.drop-delete-btn {
+  background-color: var(--red);
+}
+.dropdown-container:focus-within .dropdown-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.completed {
+  text-decoration: line-through;
+}
+label[data-priority="important"] {
+  box-shadow: 0 8px 0 0 var(--red);
+}
+label[data-priority="normal"] {
+  box-shadow: 0 8px 0 0 var(--amber);
+}
+label[data-priority="low"] {
+  box-shadow: 0 8px 0 0 var(--blue);
 }
 
 @media screen and (min-width: 53em) {
@@ -267,20 +358,18 @@ h1 {
 dialog {
   top: 50%;
   left: 50%;
-  opacity: 0;
-  transition: opacity 0.5s;
   transform: translate(-50%, -50%);
-  z-index: 1;
   background-color: var(--black);
   padding: 0.5rem;
   min-width: 300px;
   border-radius: 8px;
 }
-dialog[open] {
-  opacity: 1;
+dialog h3 {
+  overflow-x: auto;
 }
 dialog::backdrop {
-  filter: blur(3px);
+  background-color: var(--white);
+  opacity: 0.25;
 }
 .header {
   background-color: var(--dark-gray);
@@ -341,6 +430,9 @@ dialog .btn-container {
 
 /* add / edit task form body */
 
+dialog textarea {
+  overflow-y: auto;
+}
 .form-body {
   display: grid;
   color: var(--white);
