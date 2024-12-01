@@ -1,6 +1,7 @@
 import projectList from "../classes/ProjectList.js";
 import { getUserInput, openAddTaskDialog } from "../actions/addTask.js";
 import { createTaskElements } from "./createTaskEl.js";
+import { updateTaskStatus } from "../actions/taskStatus.js";
 import {
   addTaskBtn,
   addTaskDialog,
@@ -17,6 +18,7 @@ export function handleTasksEvents() {
     if (!e.target.matches(".close-btn")) return;
     addTaskDialog.close();
   });
+  taskListElement.addEventListener("change", updateTaskStatus);
 }
 
 function renderTasks() {
