@@ -1,6 +1,6 @@
-import { projectListSection, projectSection } from "../util/common.js";
+import { projectListSection, projectSection, projectsMenuBtn } from "../util/common.js";
 
-export function clickHandler() {
+export function viewProjectsClickHandler() {
   if (this.dataset.projects === "open") handleOpening(this);
   else handleClosing(this);
 }
@@ -15,4 +15,9 @@ function handleClosing(target) {
   projectListSection.dataset.active = "false";
   projectSection.dataset.active = "true";
   target.dataset.projects = "open";
+}
+
+export function setOpenIfMobile() {
+  if (projectsMenuBtn.dataset.projects === "open") return;
+  handleClosing(projectsMenuBtn);
 }

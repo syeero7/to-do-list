@@ -1,6 +1,7 @@
 import { openDeleteProjectDialog } from "../actions/deleteProject.js";
 import { openRenameProjectDialog } from "../actions/renameProject.js";
-import { selectProject } from "../actions/selectProject.js";
+import { resetSelectedList, selectProject } from "../actions/selectProject.js";
+import { setOpenIfMobile } from "../actions/viewProjects.js";
 import projectList from "../classes/ProjectList.js";
 import { projectListElement, removeElements } from "./common.js";
 import { createProjectElements } from "./createProjectEl.js";
@@ -13,6 +14,7 @@ function renderProjectList() {
 export function refreshProjectList() {
   removeElements(projectListElement);
   renderProjectList();
+  resetSelectedList();
 }
 
 export function handleProjectListClicks() {
@@ -26,6 +28,7 @@ export function handleProjectListClicks() {
     if (target.tagName === "A") {
       e.preventDefault();
       selectProject(projectId, target);
+      setOpenIfMobile(); // set value to open
     }
   });
 }

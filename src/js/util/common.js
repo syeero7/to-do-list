@@ -39,7 +39,7 @@ export const projectListSection = document.querySelector(".projects");
 export const projectSection = document.querySelector(".todo-list");
 
 export const selectedProjectHeader = document.querySelector(".selected-project");
-
+export const addTaskBtn = document.querySelector(".todo-list>header .add-task-btn");
 export const projectListElement = document.querySelector(".project-list");
 export const taskListElement = document.querySelector(".task-list");
 
