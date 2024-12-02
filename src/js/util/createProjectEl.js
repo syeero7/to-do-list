@@ -11,9 +11,11 @@ export function createProjectElements(projectList) {
 
     const editBtn = document.createElement("button");
     editBtn.classList.add("edit-btn", "btn-bg");
+    editBtn.ariaLabel = "rename project";
 
     const deleteBtn = document.createElement("button");
     deleteBtn.classList.add("delete-btn", "btn-bg");
+    deleteBtn.ariaLabel = "delete project";
 
     listItem.append(link, editBtn, deleteBtn);
     fragment.appendChild(listItem);
