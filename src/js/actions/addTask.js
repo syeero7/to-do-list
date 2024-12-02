@@ -56,7 +56,7 @@ export function addTask(
 function resetInputValues() {
   addTitleInput.value = "";
   addDescInput.value = "";
-  addPriorityInput.selectIndex = 0;
+  addPriorityInput.selectedIndex = 0;
   setDueDateInputAttributes();
 }
 
