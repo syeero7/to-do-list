@@ -137,15 +137,27 @@
     <dialog class="view-task">
       <div class="container">
         <div class="header">
+          <h3 data-task-title></h3>
           <button aria-label="close" type="button" class="close-btn btn-bg"></button>
         </div>
 
         <article>
-          <p data-task-title></p>
-          <p data-task-status></p>
-          <p data-task-priority></p>
-          <p data-task-description></p>
-          <p data-task-due-date></p>
+          <p>
+            <span class="task-info">status</span>
+            <span data-task-status></span>
+          </p>
+          <p>
+            <span class="task-info">description</span>
+            <span data-task-description></span>
+          </p>
+          <p>
+            <span class="task-info">priority</span>
+            <span data-task-priority></span>
+          </p>
+          <p>
+            <span class="task-info">due date</span>
+            <span data-task-due-date></span>
+          </p>
         </article>
       </div>
     </dialog>
