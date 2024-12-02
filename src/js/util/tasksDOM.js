@@ -14,6 +14,7 @@ import {
   removeElements,
   taskListElement,
   variables,
+  viewTaskDialog,
 } from "./common.js";
 
 export function handleTasksEvents() {
@@ -29,6 +30,11 @@ export function handleTasksEvents() {
   editTaskForm.addEventListener("click", (e) => {
     if (!e.target.matches(".cancel-btn")) return;
     editTaskDialog.close();
+  });
+  viewTaskDialog.addEventListener("click", (e) => {
+    if (!e.target.matches(".close-btn")) return;
+    viewTaskDialog.close();
+    variables.activeTaskId = null;
   });
 }
 
