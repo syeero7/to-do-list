@@ -354,6 +354,7 @@ dialog {
   background-color: var(--black);
   padding: 0.5rem;
   border-radius: 8px;
+  min-width: 19.5rem;
 }
 dialog h3 {
   overflow-x: auto;
@@ -510,14 +511,33 @@ dialog textarea {
 }
 .view-task .header {
   display: flex;
-  justify-content: end;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+}
+.view-task p {
+  position: relative;
+  padding: 0 0 0.5rem 1rem;
+  border-bottom: var(--border);
+  border-width: 1px;
+}
+.view-task span {
+  overflow-wrap: anywhere;
+}
+.view-task p:last-child {
+  border-bottom: none;
+}
+.view-task .task-info {
+  position: absolute;
+  transform: translate(-1rem, -100%);
+  font-size: 0.75em;
 }
 .view-task article {
   display: grid;
-  gap: 1rem;
+  gap: 2rem;
   background-color: var(--dark-gray);
   color: var(--white);
-  padding: 1rem;
+  padding: 2rem 1rem;
   max-width: 32ch;
   border-radius: 6px;
 }
