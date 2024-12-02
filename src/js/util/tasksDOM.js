@@ -3,11 +3,14 @@ import { getUserInput, openAddTaskDialog } from "../actions/addTask.js";
 import { createTaskElements } from "./createTaskEl.js";
 import { updateTaskStatus } from "../actions/taskStatus.js";
 import { taskButtonClickHandler } from "../actions/taskMenu.js";
+import { getEditTaskInputs } from "../actions/editTask.js";
 import { add, formatISO } from "date-fns";
 import {
   addTaskBtn,
   addTaskDialog,
   addTaskForm,
+  editTaskDialog,
+  editTaskForm,
   removeElements,
   taskListElement,
   variables,
@@ -22,6 +25,11 @@ export function handleTasksEvents() {
   });
   taskListElement.addEventListener("change", updateTaskStatus);
   taskListElement.addEventListener("click", taskButtonClickHandler);
+  editTaskForm.addEventListener("submit", getEditTaskInputs);
+  editTaskForm.addEventListener("click", (e) => {
+    if (!e.target.matches(".cancel-btn")) return;
+    editTaskDialog.close();
+  });
 }
 
 function renderTasks() {
