@@ -3,6 +3,7 @@ import { getUserInput, openAddTaskDialog } from "../actions/addTask.js";
 import { createTaskElements } from "./createTaskEl.js";
 import { updateTaskStatus } from "../actions/taskStatus.js";
 import { taskButtonClickHandler } from "../actions/taskMenu.js";
+import { add, formatISO } from "date-fns";
 import {
   addTaskBtn,
   addTaskDialog,
@@ -32,4 +33,12 @@ function renderTasks() {
 export function refreshTaskList() {
   removeElements(taskListElement);
   renderTasks();
+}
+
+export function getDueDateMinMaxAttributes() {
+  const now = new Date();
+  const today = now.toISOString().slice(0, 10);
+  const tenYearsFromNow = formatISO(add(now, { years: 10 }), { representation: "date" });
+
+  return { min: today, max: tenYearsFromNow };
 }

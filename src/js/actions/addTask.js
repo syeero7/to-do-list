@@ -1,6 +1,6 @@
 import projectList from "../classes/ProjectList.js";
 import Task from "../classes/Task.js";
-import { add, formatISO } from "date-fns";
+import { getDueDateMinMaxAttributes, refreshTaskList } from "../util/tasksDOM.js";
 import {
   addDescInput,
   addDueDateInput,
@@ -10,7 +10,6 @@ import {
   generateNewId,
   variables,
 } from "../util/common.js";
-import { refreshTaskList } from "../util/tasksDOM.js";
 
 export function openAddTaskDialog() {
   resetInputValues();
@@ -55,11 +54,9 @@ function resetInputValues() {
 }
 
 function setDueDateInputAttributes() {
-  const now = new Date();
-  const today = now.toISOString().slice(0, 10);
-  const tenYearsFromNow = formatISO(add(now, { years: 10 }), { representation: "date" });
+  const attributes = getDueDateMinMaxAttributes();
 
-  addDueDateInput.value = today;
-  addDueDateInput.min = today;
-  addDueDateInput.max = tenYearsFromNow;
+  addDueDateInput.value = attributes.min;
+  addDueDateInput.min = attributes.min;
+  addDueDateInput.max = attributes.max;
 }
