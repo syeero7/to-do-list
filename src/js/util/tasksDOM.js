@@ -16,6 +16,7 @@ import {
   variables,
   viewTaskDialog,
 } from "./common.js";
+import { saveToLocalStorage } from "../localStorage.js";
 
 export function handleTasksEvents() {
   addTaskBtn.addEventListener("click", openAddTaskDialog);
@@ -47,6 +48,7 @@ function renderTasks() {
 export function refreshTaskList() {
   removeElements(taskListElement);
   renderTasks();
+  saveToLocalStorage();
 }
 
 export function getDueDateMinMaxAttributes() {

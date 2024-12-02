@@ -29,7 +29,14 @@ export function getUserInput(e) {
   addTask(title, description, dueDate, priority);
 }
 
-function addTask(title, description, dueDate, priority, status = false, id = generateNewId()) {
+export function addTask(
+  title,
+  description,
+  dueDate,
+  priority,
+  status = false,
+  id = generateNewId(),
+) {
   const task = new Task();
   task.id = id;
   task.title = title;

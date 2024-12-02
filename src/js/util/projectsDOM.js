@@ -3,6 +3,7 @@ import { openRenameProjectDialog } from "../actions/renameProject.js";
 import { resetSelectedList, selectProject } from "../actions/selectProject.js";
 import { setOpenIfMobile } from "../actions/viewProjects.js";
 import projectList from "../classes/ProjectList.js";
+import { saveToLocalStorage } from "../localStorage.js";
 import { projectListElement, removeElements } from "./common.js";
 import { createProjectElements } from "./createProjectEl.js";
 
@@ -15,6 +16,7 @@ export function refreshProjectList() {
   removeElements(projectListElement);
   renderProjectList();
   resetSelectedList();
+  saveToLocalStorage();
 }
 
 export function handleProjectListClicks() {
