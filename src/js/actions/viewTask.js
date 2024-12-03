@@ -24,7 +24,7 @@ function updateViewTaskDialogTextContent() {
   viewDesc.textContent = task.description;
   viewDueDate.textContent = getDueDateTextContent(task.dueDate, new Date());
   viewPriority.textContent = task.priority;
-  viewStatus.textContent = task.isComplete ? "task is completed" : "task is incomplete";
+  viewStatus.textContent = task.isCompleted ? "task is completed" : "task is incomplete";
 }
 
 function getDueDateTextContent(dueDate, newDate) {
