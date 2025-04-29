@@ -1,30 +1,22 @@
-@font-face {
-  font-family: "open-sans";
-  src: url("./assets/open-sans-var.woff2");
-  font-display: swap;
-}
-
-*,
-*::after,
-*::before {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 :root {
-  --ff-open-sans: "open-sans", Arial, sans-serif;
-  --fs: clamp(1rem, 1rem + 0.5vw, 3rem);
+  --ff-cursive: "Segoe Print", "Bradley Hand", Chilanka, TSCu_Comic, casual, cursive;
+  --ff-sans-serif: system-ui, sans-serif;
 
   --black: #121212;
   --dark-gray: #282828;
   --white: #fff;
-  --blue: #0c4a6e;
-  --green: #14532d;
-  --red: #991b1b;
-  --amber: #fbbf24;
+  --blue: #236d97;
+  --green: #228148;
+  --red: #c24040;
+  --amber: #f3c34a;
 
-  --btn-size: 3rem;
+  --btn-size: 2.5em;
   --border: 2px solid var(--white);
 }
 
@@ -43,8 +35,7 @@ section[data-active="false"] {
 }
 
 body {
-  font-family: var(--ff-open-sans);
-  font-size: var(--fs);
+  font-family: var(--ff-sans-serif);
   background-color: var(--black);
   position: relative;
 }
@@ -56,7 +47,8 @@ textarea,
 select,
 option,
 input {
-  font: inherit;
+  font-style: inherit;
+  font-family: var(--ff-cursive);
 }
 input {
   min-height: 3rem;
@@ -97,16 +89,21 @@ button.add-task-btn:disabled {
   align-items: center;
   padding: 1rem;
   gap: 1rem;
+  min-height: 80px;
   background-color: var(--dark-gray);
 }
 h1 {
   margin: 0 auto;
   color: var(--white);
+  font-family: var(--ff-cursive);
+}
+h2 {
+  font-family: var(--ff-cursive);
 }
 .main-content {
   padding: 0.5rem;
-  transform: translateY(calc(1rem + 3.5em));
-  min-height: calc(100vh - 5rem);
+  transform: translateY(5.5em);
+  min-height: calc(100vh - 50px - 2em);
   display: flex;
   flex-direction: column;
 }
@@ -247,8 +244,8 @@ li.selected {
   color: var(--white);
 }
 .task-list input {
-  min-height: 3rem;
-  min-width: 3rem;
+  min-height: 2.5em;
+  min-width: 2.5em;
   margin-right: 1rem;
 }
 .task-list label {
@@ -300,6 +297,10 @@ li.selected {
 }
 .completed {
   text-decoration: line-through;
+}
+.due-date {
+  font-family: var(--ff-cursive);
+  font-size: 0.8em;
 }
 label[data-priority="important"] {
   box-shadow: 0 8px 0 0 var(--red);
