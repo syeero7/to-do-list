@@ -1,8 +1,6 @@
-# To-Do List
+# The Odin Project: ToDo List
 
-A simple Todo app built with Javascript, allowing users to manage projects and tasks locally using the Web Storage API
-
-[Live site](https://syeero7.github.io/to-do-list/)
+A simple Todo app built with Javascript, allowing users to manage projects and tasks locally using local storage
 
 ## Features
 
@@ -26,4 +24,4 @@ A simple Todo app built with Javascript, allowing users to manage projects and t
 
 - Mobile
 
-  ![mobile screenshot](./mobile%20.webp)
+  ![mobile screenshot](./mobile.webp)
